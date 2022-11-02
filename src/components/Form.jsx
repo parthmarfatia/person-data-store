@@ -12,6 +12,8 @@ function Form(props) {
     pincode: "",
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
@@ -23,17 +25,30 @@ function Form(props) {
   function handleSubmit(event) {
     event.preventDefault();
     props.setData([...props.data, formData]);
+    setFormData({
+      firstName: "",
+      lastName: "",
+      gender: "--",
+      dob: "",
+      email: "",
+      mobile: "",
+      city: "",
+      pincode: "",
+    });
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 3000);
   }
   return (
     <div className="form--container">
-      <h1 className="form--header">Enter Person Details:</h1>
+      <h1 className="form--header">Enter Details:</h1>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form--row">
           <div className="form--label">
             <i>First Name</i>
           </div>
           <input
-            placeholder="First Name"
             className="form--input"
             name="firstName"
             onChange={handleChange}
@@ -46,7 +61,6 @@ function Form(props) {
             <i>Last Name</i>
           </div>
           <input
-            placeholder="Last Name"
             className="form--input"
             name="lastName"
             onChange={handleChange}
@@ -76,11 +90,11 @@ function Form(props) {
             <i>Email</i>
           </div>
           <input
-            placeholder="Email address"
             className="form--input"
             name="email"
             onChange={handleChange}
             value={formData.email}
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
             required
           />
         </div>
@@ -90,11 +104,13 @@ function Form(props) {
             <i>Date of Birth</i>
           </div>
           <input
-            placeholder="Date of birth"
+            placeholder="dd/mm/yyyy"
             className="form--input"
             name="dob"
             onChange={handleChange}
+            size="7"
             value={formData.dob}
+            pattern="^(?:0[1-9]|[12]\d|3[01])([\/.-])(?:0[1-9]|1[012])\1(?:19|20)\d\d$"
             required
           />
         </div>
@@ -104,11 +120,11 @@ function Form(props) {
             <i>Mobile</i>
           </div>
           <input
-            placeholder="Mobile"
             className="form--input"
             name="mobile"
             onChange={handleChange}
             value={formData.mobile}
+            pattern="^(\+\d{1,3}[- ]?)?\d{10}$"
             required
           />
         </div>
@@ -119,11 +135,11 @@ function Form(props) {
           </div>
           <input
             type="city"
-            placeholder="City"
             className="form--input"
             name="city"
             onChange={handleChange}
             value={formData.city}
+            pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$"
             required
           />
         </div>
@@ -134,16 +150,22 @@ function Form(props) {
           </div>
           <input
             type="pincode"
-            placeholder="Pin Code"
             className="form--input"
             name="pincode"
             onChange={handleChange}
+            size="3"
             value={formData.pincode}
+            pattern="^\d{4}$|^\d{6}$"
             required
           />
         </div>
 
         <button className="form--submit">Submit</button>
+        {isSubmitted && (
+          <div className="form--success">
+            Form has been submitted successfully
+          </div>
+        )}
       </form>
     </div>
   );

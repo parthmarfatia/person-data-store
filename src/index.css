@@ -4,7 +4,6 @@
 }
 
 body {
-  background-color: gainsboro;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -14,13 +13,9 @@ body {
 }
 
 .form--container {
-  background-color: pink;
-  width: 50%;
+  background-color: #ffbf00;
+  width: 40%;
   padding: 20px;
-}
-
-.card--container {
-  width: 50%;
 }
 
 .form {
@@ -37,6 +32,13 @@ body {
 
 .form--input {
   margin-bottom: 10px;
+  border: none;
+  padding: 3px;
+}
+
+.form--input:focus {
+  outline: none;
+  background-color: white;
 }
 
 .form--row {
@@ -51,6 +53,57 @@ body {
 }
 
 .form--submit {
-  width: 15%;
+  width: 20%;
   margin: auto;
+  background-color: blue;
+  border: none;
+  color: white;
+  border-radius: 15px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.form--success {
+  font-size: small;
+  color: green;
+}
+
+.table--container {
+  width: 60%;
+}
+
+.table--search {
+  padding: 20px;
+}
+
+.table--input {
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.table--input:focus {
+  outline: none;
+  border: 1px solid black;
+  background-color: white;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+td {
+  font-size: small;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Card from "./components/Card";
+import Table from "./components/Table";
 import Form from "./components/Form";
+import { Tab } from "@mui/material";
 
 function App() {
   const [data, setData] = useState([]);
-  console.log(data);
   return (
     <div className="container">
       <Form data={data} setData={setData} />
-      <Card data={data} />
+      <Table data={data} />
     </div>
   );
 }
