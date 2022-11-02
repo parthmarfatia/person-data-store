@@ -7,14 +7,24 @@ function Table(props) {
   const [displayData, setDisplayData] = useState(data);
 
   useEffect(() => {
-    setDisplayData(data);
+    setDisplayData(data.sort(compare));
   }, [data.length]);
 
-  const tableData = displayData.map((data) => {
+  function compare(a, b) {
+    if (a.firstName.toLowerCase() < b.firstName.toLowerCase()) {
+      return -1;
+    }
+    if (a.firstName.toLowerCase() > b.firstName.toLowerCase()) {
+      return 1;
+    }
+    return 0;
+  }
+
+  const tableData = displayData.map((data, i) => {
     const { firstName, lastName, gender, dob, email, mobile, city, pincode } =
       data;
     return (
-      <tr>
+      <tr key={i}>
         <td>{`${firstName} ${lastName}`}</td>
         <td>{gender}</td>
         <td>{dob}</td>
@@ -50,16 +60,19 @@ function Table(props) {
         />
       </div>
       <table>
-        <tr>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Date of Birth</th>
-          <th>Email</th>
-          <th>Mobile</th>
-          <th>City</th>
-          <th>Pincode</th>
-        </tr>
-        {tableData}
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>City</th>
+            <th>Pincode</th>
+          </tr>
+        </thead>
+
+        <tbody>{tableData}</tbody>
       </table>
     </div>
   );

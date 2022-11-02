@@ -70,6 +70,9 @@ body {
 
 .table--container {
   width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .table--search {
@@ -77,13 +80,14 @@ body {
 }
 
 .table--input {
-  padding: 5px;
-  border: 1px solid black;
+  padding: 8px;
+  border: 2px solid violet;
+  border-radius: 15px;
 }
 
 .table--input:focus {
   outline: none;
-  border: 1px solid black;
+  border: 2px solid violet;
   background-color: white;
 }
 
@@ -95,7 +99,7 @@ table {
 
 td,
 th {
-  border: 1px solid #dddddd;
+  border: 1px solid #87ceeb;
   text-align: left;
   padding: 8px;
 }
@@ -105,5 +109,5 @@ td {
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #87ceeb;
 }
